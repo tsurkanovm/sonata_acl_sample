@@ -1,0 +1,72 @@
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
+sonata_admin:
+    security:
+        handler: sonata.admin.security.handler.acl
+        # acl security information
+        information:
+            GUEST:    [VIEW, LIST]
+            MANAGER:  [LIST, CREATE, EDIT]
+            OPERATOR: [OPERATOR]
+            OWNER:    [LIST, OWNER]
+            ADMIN:    [MASTER]
+        # permissions not related to an object instance and also to be available when objects do not exist
+        # the DELETE admin permission means the user is allowed to batch delete objects
+        admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
+        # permission related to the objects
+        object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
+    title: Sonata ACL sample
+    options:
+        pager_links: 10
+        title_mode: single_image
+        confirm_exit: false
+#    dashboard:
+#        groups:
+#            group.user:
+#                label: Users
+#                icon: '<i class="fa fa-user"></i>'
+#            group.contragent:
+#                label: Contragents
+#                icon: '<i class="fa fa-user"></i>'
+#            group.contracts:
+#                label: Contracts
+#                icon: '<i class="fa fa-file-text-o"></i>'
+
+#    extensions:
+#        erp_core.admin.erp_acl_admin_extension:
+#            admins:
+#                - sonata.admin.contragent
+#                - sonata.admin.contract
+#                - sonata.admin.order
+#                - sonata.admin.change_log
+#                - sonata.admin.order_product
+#                - sonata.admin.invoice
+#                - sonata.admin.project
+#                - sonata.admin.contragent_type
+#                - sonata.admin.currency
+#                - sonata.admin.payment_method
+#                - sonata.admin.conrtact_type
+#                - sonata.admin.implementation_status
+#                - sonata.admin.invoice_status
+#                - sonata.admin.product_service
+#                - sonata.admin.bonus_type
+#                - sonata.admin.order_product_type
+#                - erp_core.admin.work_type
+#                - erp_core.admin.task_type
+#                - erp_core.admin.time_logging
+#                - erp_core.admin.timesheet_report
+#                - erp_core.admin.employee_position
+#                - erp_core.admin.employee
+#                - erp_core.admin.transaction_type
+#                - erp_core.admin.transaction
+#                - erp_core.admin.salary_operation
+#                - erp_core.admin.salary_registry
+#                - erp_notification.admin.notification_periodicity
+#            excludes:
+#                - sonata.admin.day
